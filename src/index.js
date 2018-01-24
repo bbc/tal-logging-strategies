@@ -15,13 +15,47 @@ var MAP = {
   'antie/devices/logging/xhr': xhr
 }
 
-function getStrategyForConfig (deviceConfig, options) {
-  options = options || {}
+function filterLoggingMethods (strategy, level) {
+  var funcs = {
+    log: strategy.log,
+    error: noop.error,
+    warn: noop.warn,
+    info: noop.info,
+    debug: noop.debug
+  }
 
-  var modifiers = deviceConfig.modules.modifiers
-  var loggingModifiers = modifiers.filter(function (m) { return m.match(/logging\//) })
+  switch (level) {
+    case 'all':
+    case 'debug':
+      funcs.error = strategy.error
+      funcs.warn = strategy.warn
+      funcs.info = strategy.info
+      funcs.debug = strategy.debug
+      break
+    case 'info':
+      funcs.error = strategy.error
+      funcs.warn = strategy.warn
+      funcs.info = strategy.info
+      break
+    case 'warn':
+      funcs.error = strategy.error
+      funcs.warn = strategy.warn
+      break
+    case 'error':
+      funcs.error = strategy.error
+      break
+    default:
+      funcs.log = noop.log
+  }
 
-  return MAP[loggingModifiers]
+  return funcs
+}
+
+function getStrategyForConfig (config, options) {
+  var logging = config.logging || {}
+
+  var strategy = MAP['antie/devices/logging/' + logging.strategy] || console
+  return filterLoggingMethods(strategy, logging.level)
 }
 
 export default {
