@@ -1,6 +1,6 @@
 {
   "name": "tal-logging-strategies",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "lib/tal-logging-strategies.js",
   "author": "Ross Wilson <ross.wilson@bbc.co.uk>",
   "license": "Apache-2.0",
