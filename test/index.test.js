@@ -25,6 +25,20 @@ describe('getStrategyForConfig', () => {
     expect(strategy).toEqual(LoggingStrategies.console)
   })
 
+  it('should return the `noop` strategy as expected', () => {
+    const config = buildConfig('antie/devices/logging/consumelog')
+    const strategy = LoggingStrategies.getStrategyForConfig(config)
+
+    expect(strategy).toEqual(LoggingStrategies.noop)
+  })
+
+  it('should return the `noop` strategy as expected', () => {
+    const config = buildConfig('antie/devices/logging/saving')
+    const strategy = LoggingStrategies.getStrategyForConfig(config)
+
+    expect(strategy).toEqual(LoggingStrategies.noop)
+  })
+
   it('should return the `jstestdriver` strategy as expected', () => {
     const config = buildConfig('antie/devices/logging/jstestdriver')
     const strategy = LoggingStrategies.getStrategyForConfig(config)
