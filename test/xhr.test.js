@@ -1,9 +1,8 @@
 /* eslint-env jest */
 
-const { xhr } = require('../lib/tal-logging-strategies')
+const { xhr } = require('../src')
 
 describe('xhr', () => {
-
   test('makes a POST', () => {
     const open = jest.fn()
     const setRequestHeader = jest.fn()
@@ -19,5 +18,4 @@ describe('xhr', () => {
     expect(setRequestHeader).toHaveBeenCalledWith('Content-type', 'application/json; charset=utf-8')
     expect(send).toHaveBeenCalledWith(JSON.stringify({ level: 'log', body: 'Example' }))
   })
-
 })

@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-const { jsTestDriver } = require('../lib/tal-logging-strategies')
+const { jsTestDriver } = require('../src')
 
 test('jsTestDriver', () => {
   window.jstestdriver = {
@@ -11,5 +11,5 @@ test('jsTestDriver', () => {
 
   jsTestDriver.log('Example')
 
-  expect(jstestdriver.console.log).toHaveBeenCalledWith('Example')
+  expect(window.jstestdriver.console.log).toHaveBeenCalledWith('Example')
 })

@@ -1,6 +1,6 @@
 function noop () {}
 
-export default {
+module.exports = {
   log: noop,
   debug: noop,
   info: noop,

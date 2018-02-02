@@ -42,7 +42,7 @@ function error () {
   })
 }
 
-export default {
+module.exports = {
   log: log,
   debug: debug,
   info: info,

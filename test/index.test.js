@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-const LoggingStrategies = require('../lib/tal-logging-strategies')
+const LoggingStrategies = require('../src')
 
 const buildConfig = (strategy, level = 'all') => {
   return {
@@ -62,9 +62,7 @@ describe('getStrategyForConfig', () => {
   })
 
   describe('log levels', () => {
-
     describe('when set to all', () => {
-
       it('should enable all the log level functions', () => {
         const config = buildConfig('default', 'all')
         const strategy = LoggingStrategies.getStrategyForConfig(config)
@@ -75,11 +73,9 @@ describe('getStrategyForConfig', () => {
         expect(strategy.info).toEqual(LoggingStrategies.console.info)
         expect(strategy.debug).toEqual(LoggingStrategies.console.debug)
       })
-
     })
 
     describe('when set to debug', () => {
-
       it('should enable all the log level functions', () => {
         const config = buildConfig('default', 'debug')
         const strategy = LoggingStrategies.getStrategyForConfig(config)
@@ -90,11 +86,9 @@ describe('getStrategyForConfig', () => {
         expect(strategy.info).toEqual(LoggingStrategies.console.info)
         expect(strategy.debug).toEqual(LoggingStrategies.console.debug)
       })
-
     })
 
     describe('when set to info', () => {
-
       it('should enable all the log level functions except debug', () => {
         const config = buildConfig('default', 'info')
         const strategy = LoggingStrategies.getStrategyForConfig(config)
@@ -106,11 +100,9 @@ describe('getStrategyForConfig', () => {
 
         expect(strategy.debug).toEqual(LoggingStrategies.noop.debug)
       })
-
     })
 
     describe('when set to warn', () => {
-
       it('should enable all the log level functions except debug and info', () => {
         const config = buildConfig('default', 'warn')
         const strategy = LoggingStrategies.getStrategyForConfig(config)
@@ -122,11 +114,9 @@ describe('getStrategyForConfig', () => {
         expect(strategy.info).toEqual(LoggingStrategies.noop.info)
         expect(strategy.debug).toEqual(LoggingStrategies.noop.debug)
       })
-
     })
 
     describe('when set to error', () => {
-
       it('should enable log and error log functions and disable debug, info, and warn', () => {
         const config = buildConfig('default', 'error')
         const strategy = LoggingStrategies.getStrategyForConfig(config)
@@ -138,11 +128,9 @@ describe('getStrategyForConfig', () => {
         expect(strategy.info).toEqual(LoggingStrategies.noop.info)
         expect(strategy.debug).toEqual(LoggingStrategies.noop.debug)
       })
-
     })
 
     describe('when set to an unknown level', () => {
-
       it('should disable all log functions', () => {
         const config = buildConfig('default', 'unknown-level')
         const strategy = LoggingStrategies.getStrategyForConfig(config)
@@ -153,8 +141,6 @@ describe('getStrategyForConfig', () => {
         expect(strategy.info).toEqual(LoggingStrategies.noop.info)
         expect(strategy.debug).toEqual(LoggingStrategies.noop.debug)
       })
-
     })
-
   })
 })

@@ -1,7 +1,7 @@
 {
   "name": "tal-logging-strategies",
   "version": "0.1.0",
-  "main": "lib/tal-logging-strategies.js",
+  "main": "src/index.js",
   "author": "Ross Wilson <ross.wilson@bbc.co.uk>",
   "license": "Apache-2.0",
   "repository": {
@@ -10,18 +10,11 @@
   },
   "devDependencies": {
     "jest": "^22.1.4",
-    "rimraf": "^2.6.2",
-    "rollup": "^0.55.0",
-    "standard": "^10.0.3",
-    "uglify-js": "^3.3.8"
+    "standard": "^10.0.3"
   },
   "scripts": {
-    "lint": "standard src/*.js",
-    "prebuild": "rimraf lib",
-    "build": "rollup -c",
-    "postbuild": "npm run minify",
-    "pretest": "npm run lint && npm run build",
-    "test": "jest",
-    "minify": "uglifyjs lib/tal-logging-strategies.js --compress --mangle --output lib/tal-logging-strategies.min.js"
+    "lint": "standard",
+    "pretest": "npm run lint",
+    "test": "jest"
   }
 }

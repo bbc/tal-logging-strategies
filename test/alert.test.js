@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-const { alert } = require('../lib/tal-logging-strategies')
+const { alert } = require('../src')
 
 test('alert', () => {
   window.alert = jest.fn()

@@ -20,7 +20,7 @@ function error () {
   jstestdriver.console.error(Array.prototype.join.call(arguments, '\n'))
 }
 
-export default {
+module.exports = {
   log: log,
   debug: debug,
   info: info,

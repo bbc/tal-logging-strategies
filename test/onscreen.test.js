@@ -1,12 +1,13 @@
 /* eslint-env jest */
 
-const { onScreen } = require('../lib/tal-logging-strategies')
+const { onScreen } = require('../src')
 
 describe('onScreen', () => {
-
   const originalCreateElement = document.createElement
 
-  beforeEach(() => document.createElement = originalCreateElement)
+  beforeEach(() => {
+    document.createElement = originalCreateElement
+  })
 
   test('creates a div container with text contents', () => {
     const div = document.createElement('div')
@@ -31,5 +32,4 @@ describe('onScreen', () => {
 
     expect(document.getElementById('onScreenLogging').innerHTML).toEqual('[LOG] Another Example<hr>[LOG] Example<hr>')
   })
-
 })

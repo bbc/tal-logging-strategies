@@ -18,7 +18,7 @@ function error () {
   window.alert('[ERROR] ' + Array.prototype.join.call(arguments, '\n'))
 }
 
-export default {
+module.exports = {
   log: log,
   debug: debug,
   info: info,

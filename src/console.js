@@ -18,7 +18,7 @@ function error () {
   console.log('[ERROR]', Array.prototype.join.call(arguments, '\n'))
 }
 
-export default {
+module.exports = {
   log: log,
   debug: debug,
   info: info,

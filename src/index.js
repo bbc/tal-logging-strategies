@@ -1,27 +1,27 @@
-import alert from './alert'
-import noop from './noop'
-import console from './console'
-import jsTestDriver from './jstestdriver'
-import onScreen from './onscreen'
-import xhr from './xhr'
+var alertStrategy = require('./alert')
+var noopStrategy = require('./noop')
+var consoleStrategy = require('./console')
+var jsTestDriverStategy = require('./jstestdriver')
+var onScreenStrategy = require('./onscreen')
+var xhrStrategy = require('./xhr')
 
 var MAP = {
-  'antie/devices/logging/alert': alert,
-  'antie/devices/logging/consumelog': noop,
-  'antie/devices/logging/saving': noop,
-  'antie/devices/logging/default': console,
-  'antie/devices/logging/jstestdriver': jsTestDriver,
-  'antie/devices/logging/onscreen': onScreen,
-  'antie/devices/logging/xhr': xhr
+  'antie/devices/logging/alert': alertStrategy,
+  'antie/devices/logging/consumelog': noopStrategy,
+  'antie/devices/logging/saving': noopStrategy,
+  'antie/devices/logging/default': consoleStrategy,
+  'antie/devices/logging/jstestdriver': jsTestDriverStategy,
+  'antie/devices/logging/onscreen': onScreenStrategy,
+  'antie/devices/logging/xhr': xhrStrategy
 }
 
 function filterLoggingMethods (strategy, level) {
   var funcs = {
     log: strategy.log,
-    error: noop.error,
-    warn: noop.warn,
-    info: noop.info,
-    debug: noop.debug
+    error: noopStrategy.error,
+    warn: noopStrategy.warn,
+    info: noopStrategy.info,
+    debug: noopStrategy.debug
   }
 
   switch (level) {
@@ -45,7 +45,7 @@ function filterLoggingMethods (strategy, level) {
       funcs.error = strategy.error
       break
     default:
-      funcs.log = noop.log
+      funcs.log = noopStrategy.log
   }
 
   return funcs
@@ -54,16 +54,16 @@ function filterLoggingMethods (strategy, level) {
 function getStrategyForConfig (config, options) {
   var logging = config.logging || {}
 
-  var strategy = MAP['antie/devices/logging/' + logging.strategy] || console
+  var strategy = MAP['antie/devices/logging/' + logging.strategy] || consoleStrategy
   return filterLoggingMethods(strategy, logging.level)
 }
 
-export default {
+module.exports = {
   getStrategyForConfig: getStrategyForConfig,
-  alert: alert,
-  noop: noop,
-  console: console,
-  jsTestDriver: jsTestDriver,
-  onScreen: onScreen,
-  xhr: xhr
+  alert: alertStrategy,
+  noop: noopStrategy,
+  console: consoleStrategy,
+  jsTestDriver: jsTestDriverStategy,
+  onScreen: onScreenStrategy,
+  xhr: xhrStrategy
 }

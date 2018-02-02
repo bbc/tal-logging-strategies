@@ -49,7 +49,7 @@ function error () {
   prependItem('[ERROR] ' + Array.prototype.join.call(arguments, ', '))
 }
 
-export default {
+module.exports = {
   log: log,
   debug: debug,
   info: info,

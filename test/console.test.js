@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-const { console } = require('../lib/tal-logging-strategies')
+const { console } = require('../src')
 
 test('console', () => {
   window.console.log = jest.fn()
